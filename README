@@ -1,0 +1,3 @@
+Graphic representation of system load average on the terminal.
+
+The tload utility (from procps 3.2.8) ported to OS X and FreeBSD.
