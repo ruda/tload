@@ -9,8 +9,6 @@
  * /proc changes by David Engel (david@ods.com)
  * Made a little more efficient by Michael K. Johnson (johnsonm@sunsite.unc.edu)
  */
-#include "proc/version.h"
-#include "proc/sysinfo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <setjmp.h>
@@ -79,7 +77,7 @@ int main(int argc, char **argv)
 	switch (opt) {
 	    case 's': scale_arg = optarg; break;
 	    case 'd': dly = atoi(optarg); break;
-	    case 'V': display_version(); exit(0); break;
+	    case 'V': fprintf(stdout, "tload version 3.2.8\n"); exit(0); break;
 	    default:
 		printf("usage: tload [-V] [-d delay] [-s scale] [tty]\n");
 		exit(1);
@@ -110,7 +108,7 @@ int main(int argc, char **argv)
  	if (scale_fact < max_scale)
 	    scale_fact *= 2.0; /* help it drift back up. */
 
-	loadavg(&av[0], &av[1], &av[2]);
+	getloadavg(av, 3);
 
     repeat:
 	lines = av[0] * scale_fact;
