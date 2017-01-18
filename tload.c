@@ -18,6 +18,7 @@
 #include <termios.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <locale.h>
 
 static char *screen;
 
@@ -72,6 +73,8 @@ int main(int argc, char **argv)
     double av[3];
     static double max_scale, scale_fact;
     char *scale_arg = NULL;
+
+    setlocale (LC_ALL, "");
 
     while ((opt = getopt(argc, argv, "s:d:V")) != -1)
 	switch (opt) {
